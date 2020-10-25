@@ -1,0 +1,36 @@
+.nav {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.1689718123577556) 0%,
+    rgba(0, 0, 0, 0.1689718123577556) 100%
+  );
+  transition: all 0.5s ease-in-out;
+}
+.nav_black {
+  background-color: #111;
+}
+.nav_logo {
+  position: fixed;
+  left: 20px;
+  width: 80px;
+  object-fit: contain;
+}
+.nav_contents {
+  align-items: center;
+  color: #e5e5e5;
+  display: flex;
+  font-size: 15px;
+  list-style: none;
+  margin-left: 70px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.nav_contents li {
+  margin-right: 2.3vw;
+  transition: all 0.5s;
+}
+.nav_contents li:hover {
+  color: white;
+  filter: brightness(120%);
+}

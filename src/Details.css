@@ -1,0 +1,53 @@
+.fa-window-close {
+  color: white !important;
+  font-size: 20px !important;
+  text-shadow: 0 0 10px black !important;
+}
+.banner_fade_detail {
+  height: 100%;
+  width: 40%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  position: absolute;
+  z-index: 100;
+}
+@media (max-width: 768px) {
+  .banner_fade_detail {
+    display: none;
+  }
+}
+.banner_button_details {
+  cursor: pointer;
+  color: white;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 2rem;
+  padding-top: 0.5rem;
+  background-color: rgb(145, 1, 1);
+  padding-bottom: 0.5rem;
+}
+.banner_button_details:hover {
+  color: #000;
+  background-color: #e6e6e6;
+  transition: all 0.2s;
+}
+
+@media (max-width: 1100px) {
+  .banner_button_details {
+    font-weight: 400;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    padding-top: 0.3rem;
+    background-color: rgb(145, 1, 1);
+    padding-bottom: 0.3rem;
+  }
+}
