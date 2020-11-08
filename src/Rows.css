@@ -2,6 +2,7 @@
   margin-left: 20px;
   color: white;
   margin-right: 20px;
+  width: 130vw !important;
 }
 .row_posters {
   display: flex;
