@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { animateScroll as scroll } from "react-scroll";
 import "./Nav.css";
-import { Nav, NavLogo, NavMenu, NavLinks, MobileIcons } from "./NavStyle";
+import {
+  Nav,
+  NavLogo,
+  NavMenu,
+  NavLinks,
+  MobileIcons,
+  MyListLink,
+} from "./NavStyle";
 import logo from "./logo.png";
 import SideBar from "./SideBar";
 
@@ -16,7 +23,7 @@ function NavBar() {
       } else handleShow(false);
     });
     return () => {
-      window.removeEventListener("scroll");
+      window.removeEventListener("scroll", handleShow);
     };
   }, []);
 
@@ -97,6 +104,7 @@ function NavBar() {
           Documentaries
         </NavLinks>
       </NavMenu>
+      <MyListLink to="/myList">My List</MyListLink>
     </Nav>
   );
 }

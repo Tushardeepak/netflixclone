@@ -67,3 +67,13 @@ export const NavLinks = styled(LinkS)`
     border-top: 1.5px solid red;
   }
 `;
+
+export const MyListLink = styled(LinkR)`
+  position: fixed;
+  right: 2rem;
+  text-decoration: none;
+  color: #fff;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;

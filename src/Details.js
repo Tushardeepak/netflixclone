@@ -75,12 +75,20 @@ function Details({ currentMovie, dis }) {
 
             {truncate(currentMovie?.overview, 300)}
           </DetailP>
-          <Play onClick={() => handleopenVideo()}>
-            <button className="banner_button_details">
-              <i className="fa fa-play" aria-hidden="true"></i>
-              Play
-            </button>
-          </Play>
+          <div style={{ display: "flex" }}>
+            <Play onClick={() => handleopenVideo()}>
+              <button className="banner_button_details">
+                <i className="fa fa-play" aria-hidden="true"></i>
+                Play
+              </button>
+            </Play>
+            <Play style={{ marginLeft: "-7rem" }}>
+              <button className="banner_button_details">
+                <i className="fa fa-bookmark" aria-hidden="true"></i>
+                Save
+              </button>
+            </Play>
+          </div>
         </DetailInfo>
         <DetailImgBox>
           <div className="banner_fade_detail"></div>

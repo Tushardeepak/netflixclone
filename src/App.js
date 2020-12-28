@@ -1,56 +1,26 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Rows from "./Rows";
-import requests from "./request";
-import Banner from "./Banner";
-import Nav from "./Nav";
-import SideBar from "./SideBar";
+import Home from "./Home";
+import Main from "./components/main/Main";
+import Footer from "./components/Footer";
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./PrivateRoute";
+import ForgetPassword from "./components/main/ForgetPassword";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <SideBar />
-        <Nav />
+        <AuthProvider>
+          <Switch>
+            <Route exact path="/signUp" component={Main} />
+            <Route exact path="/forgetPassword" component={ForgetPassword} />
+            <PrivateRoute exact path="/" component={Home} />
+          </Switch>
+          <Footer />
+        </AuthProvider>
       </Router>
-      <Banner />
-      <Rows
-        title="Netflix Originals"
-        fetchUrl={requests.fetchNetflixOriginals}
-        isLargeRow={true}
-      />
-      <Rows
-        title="Trending Now"
-        fetchUrl={requests.fetchTrending}
-        id="trending"
-      />
-      <Rows title="Top Rated" fetchUrl={requests.fetchTopRated} />
-      <Rows
-        title="Action Movies"
-        fetchUrl={requests.fetchActionMovies}
-        id="action"
-      />
-      <Rows
-        title="Comedy Movies"
-        fetchUrl={requests.fetchComedyMovies}
-        id="comedy"
-      />
-      <Rows
-        title="Horror Movies"
-        fetchUrl={requests.fetchHorrorMovies}
-        id="horror"
-      />
-      <Rows
-        title="Romance"
-        fetchUrl={requests.fetchRomanceMovies}
-        id="romance"
-      />
-      <Rows
-        title="Documentaries"
-        fetchUrl={requests.fetchDocumentaries}
-        id="documentary"
-      />
     </div>
   );
 }

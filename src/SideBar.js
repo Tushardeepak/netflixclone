@@ -6,6 +6,7 @@ import {
   SideBarWrapper,
   SideBarMenu,
   SideBarLinks,
+  SideBarListLink,
 } from "./SideBarStyle";
 
 function SideBar({ isOpen, toggle }) {
@@ -16,6 +17,9 @@ function SideBar({ isOpen, toggle }) {
       </Icons>
       <SideBarWrapper>
         <SideBarMenu>
+          <SideBarListLink to="/myList" onClick={toggle}>
+            My List
+          </SideBarListLink>
           <SideBarLinks to="trending" onClick={toggle}>
             Trending
           </SideBarLinks>

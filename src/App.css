@@ -4,3 +4,24 @@
 .App {
   background-color: #111;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(29, 29, 29);
+  padding: 0 0.5rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 0, 0, 0.466);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(253, 1, 1);
+}

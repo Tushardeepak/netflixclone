@@ -3,10 +3,12 @@ import axios from "./axios";
 import requests from "./request";
 import "./Banner.css";
 import Video from "./Video";
+import { useHistory } from "react-router-dom";
 
 function Banner() {
   const [movie, setmovie] = useState([]);
   const [openVideo, setopenVideo] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
@@ -30,6 +32,10 @@ function Banner() {
     setopenVideo(!openVideo);
   };
 
+  const handleOpenList = () => {
+    history.push("/myList");
+  };
+
   return (
     <header
       className="banner"
@@ -48,7 +54,7 @@ function Banner() {
             <i className="fa fa-play" aria-hidden="true"></i>
             Play
           </button>
-          <button className="banner_button">
+          <button className="banner_button" onClick={() => handleOpenList()}>
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             My List
           </button>
