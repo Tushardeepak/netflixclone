@@ -1,9 +1,8 @@
-### Enjoy the app here...`
+### Enjoy the app here...
 
 https://netflixclone22.herokuapp.com
 
 A clone of netflix account with:
-
 ### Authentication
 ### Authorization
 ### Individual accounts
