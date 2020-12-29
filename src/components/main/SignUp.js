@@ -6,6 +6,7 @@ import { generateMedia } from "styled-media-query";
 import { Checkbox } from "@material-ui/core";
 import { useAuth } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
+import { db } from "../../firebase";
 
 function SignUp({ setAuthToggle }) {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ function SignUp({ setAuthToggle }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState(false);
-  const { signUp } = useAuth();
+  const { signUp, currentUser } = useAuth();
   const history = useHistory();
 
   const handleChange = (set, value) => {
@@ -32,7 +33,11 @@ function SignUp({ setAuthToggle }) {
     } else {
       try {
         setLoader(true);
-        await signUp(email, password);
+        const USER = await signUp(email, password);
+
+        db.collection("users").doc(USER?.uid).collection("profile").add({
+          email: email,
+        });
         setLoader(false);
         history.push("/");
       } catch (error) {

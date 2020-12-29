@@ -23,14 +23,24 @@ import {
   Rate,
   BorderRight,
 } from "./Details-style";
+import { db } from "./firebase";
+import { useAuth } from "./context/AuthContext";
+
 const Base_URL = "https://image.tmdb.org/t/p/original/";
+
 function Details({ currentMovie, dis }) {
   const [display, setdisplay] = useState();
   const [openVideo, setopenVideo] = useState(false);
+  const [check, setCheck] = useState(false);
+  const { currentUser } = useAuth();
+
   useEffect(() => {
     setdisplay(dis);
   }, [dis]);
 
+  useEffect(() => {
+    setCheck(false);
+  }, [currentMovie]);
   function handleClose() {
     setdisplay(!dis);
   }
@@ -43,6 +53,14 @@ function Details({ currentMovie, dis }) {
   function seasons(obj) {
     return obj?.length;
   }
+
+  const handleSave = (movieName, moviePoster) => {
+    setCheck(true);
+    db.collection("users").doc(currentUser.uid).collection("movies").add({
+      movieName: movieName,
+      posterLink: moviePoster,
+    });
+  };
 
   const handleopenVideo = () => {
     setopenVideo(!openVideo);
@@ -82,10 +100,29 @@ function Details({ currentMovie, dis }) {
                 Play
               </button>
             </Play>
-            <Play style={{ marginLeft: "-7rem" }}>
+            <Play
+              style={{ marginLeft: "-7rem" }}
+              onClick={() =>
+                handleSave(
+                  currentMovie.name || currentMovie.title,
+                  `${Base_URL}${currentMovie.poster_path}`
+                )
+              }
+            >
               <button className="banner_button_details">
-                <i className="fa fa-bookmark" aria-hidden="true"></i>
-                Save
+                {check ? (
+                  <>
+                    {" "}
+                    <i className="fa fa-check" aria-hidden="true"></i>
+                    Saved
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <i className="fa fa-bookmark" aria-hidden="true"></i>
+                    Save
+                  </>
+                )}
               </button>
             </Play>
           </div>
@@ -106,7 +143,7 @@ function Details({ currentMovie, dis }) {
       <Video
         isOpen={openVideo}
         toggle={handleopenVideo}
-        id={currentMovie.id}
+        id={currentMovie.id ? currentMovie.id : "123"}
       ></Video>
     </DetailContainer>
   );

@@ -1,7 +1,6 @@
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from "firebase";
 
-const app = firebase.initializeApp({
+const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyDWUp-BStoTyEkDfPEmRutWjBMt12w7hRI",
   authDomain: "netflix-clone-c89ec.firebaseapp.com",
   databaseURL: "https://netflix-clone-c89ec.firebaseio.com",
@@ -12,6 +11,8 @@ const app = firebase.initializeApp({
   measurementId: "G-JB56EHLP6N",
 });
 
-export const auth = app.auth();
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
+const storage = firebase.storage();
 
-export default app;
+export { db, auth, storage };

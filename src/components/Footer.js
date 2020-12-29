@@ -53,14 +53,20 @@ function Footer() {
         }}
       >
         <p>
-          Made by TUSHAR DEEPAK{" "}
-          <GitHubIcon
-            style={{
-              color: "#999",
-              fontSize: "1rem",
-              padding: "0 0.2rem",
-            }}
-          />{" "}
+          Made by{" "}
+          <a
+            href="https://github.com/Tushardeepak/netflixclone"
+            style={{ textDecoration: "none", color: "#999" }}
+          >
+            TUSHAR DEEPAK{" "}
+            <GitHubIcon
+              style={{
+                color: "#999",
+                fontSize: "1rem",
+                padding: "0 0.2rem",
+              }}
+            />
+          </a>{" "}
           (Give a star{" "}
           <StarIcon
             style={{ color: "gold", fontSize: "1rem", padding: "0 0.2rem" }}

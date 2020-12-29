@@ -4,8 +4,11 @@ import requests from "./request";
 import Banner from "./Banner";
 import SideBar from "./SideBar";
 import Nav from "./Nav";
+import { useAuth } from "./context/AuthContext";
 
 function Home() {
+  const { currentUser } = useAuth();
+
   return (
     <div>
       <SideBar />

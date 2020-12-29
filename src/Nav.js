@@ -9,13 +9,18 @@ import {
   NavLinks,
   MobileIcons,
   MyListLink,
+  LogOutDiv,
 } from "./NavStyle";
 import logo from "./logo.png";
 import SideBar from "./SideBar";
+import { useAuth } from "./context/AuthContext";
+import { useHistory } from "react-router-dom";
 
 function NavBar() {
   const [show, handleShow] = useState(false);
   const [open, setopen] = useState(false);
+  const { logOut } = useAuth();
+  const history = useHistory();
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
@@ -33,6 +38,11 @@ function NavBar() {
 
   const toggleHome = () => {
     scroll.scrollToTop();
+  };
+
+  const handleSignOut = async () => {
+    await logOut();
+    history.push("/signUp");
   };
 
   return (
@@ -104,7 +114,19 @@ function NavBar() {
           Documentaries
         </NavLinks>
       </NavMenu>
-      <MyListLink to="/myList">My List</MyListLink>
+      <div
+        style={{
+          position: "fixed",
+          right: "2rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "8rem",
+        }}
+      >
+        <MyListLink to="/myList">My List</MyListLink>
+        <LogOutDiv onClick={() => handleSignOut()}>Log Out</LogOutDiv>
+      </div>
     </Nav>
   );
 }

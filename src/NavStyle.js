@@ -58,7 +58,7 @@ export const NavLinks = styled(LinkS)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   height: 100%;
   cursor: pointer;
   text-shadow: -1px -1px 3px black;
@@ -69,10 +69,21 @@ export const NavLinks = styled(LinkS)`
 `;
 
 export const MyListLink = styled(LinkR)`
-  position: fixed;
-  right: 2rem;
+  text-shadow: -1px -1px 3px black;
   text-decoration: none;
   color: #fff;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const LogOutDiv = styled.div`
+  text-shadow: -1px -1px 3px black;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10000000;
+
   @media screen and (max-width: 768px) {
     display: none;
   }

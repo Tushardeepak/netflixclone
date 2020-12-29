@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./PrivateRoute";
 import ForgetPassword from "./components/main/ForgetPassword";
+import MyList from "./components/mylist/MyList";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Switch>
             <Route exact path="/signUp" component={Main} />
             <Route exact path="/forgetPassword" component={ForgetPassword} />
+            <PrivateRoute exact path="/myList" component={MyList} />
             <PrivateRoute exact path="/" component={Home} />
           </Switch>
           <Footer />

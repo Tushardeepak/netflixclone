@@ -62,7 +62,7 @@ function Banner() {
         <div className="banner_desc">{truncate(movie?.overview, 150)}</div>
       </div>
       <div className="banner_fade"></div>
-      <Video isOpen={openVideo} toggle={handleopenVideo} id={movie.id}></Video>
+      <Video isOpen={openVideo} toggle={handleopenVideo} id={movie?.id}></Video>
     </header>
   );
 }

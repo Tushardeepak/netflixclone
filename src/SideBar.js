@@ -8,8 +8,17 @@ import {
   SideBarLinks,
   SideBarListLink,
 } from "./SideBarStyle";
+import { useAuth } from "./context/AuthContext";
+import { useHistory } from "react-router-dom";
 
 function SideBar({ isOpen, toggle }) {
+  const { logOut } = useAuth();
+  const history = useHistory();
+
+  const handleSignOut = async () => {
+    await logOut();
+    history.push("/signUp");
+  };
   return (
     <SideBarContainer isOpen={isOpen} onClick={toggle}>
       <Icons>
@@ -29,14 +38,12 @@ function SideBar({ isOpen, toggle }) {
           <SideBarLinks to="comedy" onClick={toggle}>
             Comedy
           </SideBarLinks>
-          <SideBarLinks to="horror" onClick={toggle}>
-            Horror
-          </SideBarLinks>
-          <SideBarLinks to="romance" onClick={toggle}>
-            Romance
-          </SideBarLinks>
-          <SideBarLinks to="documentary" onClick={toggle}>
-            Documentaries
+
+          <SideBarLinks
+            style={{ color: "red" }}
+            onClick={() => handleSignOut()}
+          >
+            Log Out
           </SideBarLinks>
         </SideBarMenu>
       </SideBarWrapper>
