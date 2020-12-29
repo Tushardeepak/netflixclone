@@ -15,6 +15,7 @@ function MyList() {
   const [edit, setEdit] = useState(false);
   const [link, setLink] = useState("");
   const [image, setImage] = useState("");
+  const [savedMovies, setSavedMovies] = useState([]);
   const { currentUser } = useAuth();
 
   const handleEdit = () => {
@@ -48,6 +49,21 @@ function MyList() {
       });
   }, []);
 
+  React.useEffect(() => {
+    db.collection("users")
+      .doc(currentUser.uid)
+      .collection("movies")
+      .onSnapshot((snapshot) => {
+        setSavedMovies(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            movieName: doc.data().movieName,
+            moviePoster: doc.data().posterLink,
+          }))
+        );
+      });
+  }, []);
+
   const handleUpload = () => {
     const uploadTask = storage.ref(`profileImages/${image.name}`).put(image);
     storage
@@ -68,6 +84,13 @@ function MyList() {
       });
     setImage(null);
   };
+  const handleDelete = (movieId) => {
+    db.collection("users")
+      .doc(currentUser.uid)
+      .collection("movies")
+      .doc(movieId)
+      .delete();
+  };
 
   return (
     <MyListContainer>
@@ -85,7 +108,7 @@ function MyList() {
           fontSize: "1rem",
           color: "#fff",
           padding: "0 0.5rem",
-          zIndex: 10,
+          zIndex: 1000,
         }}
         onClick={() => history.push("/")}
       >
@@ -161,8 +184,7 @@ function MyList() {
             style={{
               color: "#999",
               zIndex: 10,
-              position: "absolute",
-              bottom: "1rem",
+              marginTop: "3rem",
             }}
           >
             Enjoyed? Give a star{" "}
@@ -180,7 +202,32 @@ function MyList() {
             </a>
           </p>
         </MyListLeftContainer>
-        <MyListLeftContainer></MyListLeftContainer>
+        <MyListRightContainer>
+          {savedMovies?.map((movie) => (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <MovieTab src={movie.moviePoster}></MovieTab>
+              <Button
+                style={{
+                  margin: "0.5rem 0",
+                  marginTop: "-1.7rem",
+                  background: "rgb(71, 0, 0)",
+                  opacity: "0.8",
+                  zIndex: 10,
+                  color: "#FFF",
+                }}
+                onClick={() => handleDelete(movie.id)}
+              >
+                Delete
+              </Button>
+            </div>
+          ))}
+        </MyListRightContainer>
       </MyListDownContainer>
     </MyListContainer>
   );
@@ -197,6 +244,7 @@ const customMedia = generateMedia({
 
 const MyListContainer = styled.div`
   background-color: #000;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -217,11 +265,13 @@ const MyListDownContainer = styled.div`
 `;
 
 const MyListLeftContainer = styled.div`
-  position: relative;
   margin: 3rem;
-  background-color: red;
-  margin-top: 3rem;
-  width: 40%;
+  background-color: #000;
+  border: 0.5px solid red;
+  border-bottom: none;
+  border-left: none;
+  padding: 0 2rem;
+  width: 38%;
   height: 30rem;
   border-radius: 3rem;
   display: flex;
@@ -229,21 +279,9 @@ const MyListLeftContainer = styled.div`
   align-items: center;
 
   ${customMedia.lessThan("tablet")`
-     width: 80%;
-   
+     width: 60%;
+     height: 35rem;
     `}
-
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    background-color: rgb(20, 20, 20);
-    width: 98%;
-    height: 29.5rem;
-    top: 0rem;
-    left: 0rem;
-    border-radius: 3rem;
-  }
 
   .inputName {
     color: #fff;
@@ -258,6 +296,18 @@ const MyListLeftContainer = styled.div`
     border-radius: 10px;
     height: 2rem;
     z-index: 10;
+
+    ${customMedia.lessThan("tablet")`
+    width: 15rem;
+    font-size: 1.5rem;
+    `};
+  }
+
+  h2 {
+    ${customMedia.lessThan("tablet")`
+    width: 15rem;
+    font-size: 0.7rem;
+    `};
   }
 
   .profilePhoto {
@@ -265,3 +315,51 @@ const MyListLeftContainer = styled.div`
     color: #fff;
   }
 `;
+const MyListRightContainer = styled.div`
+  margin: 3rem;
+  background-color: #000;
+  border: 0.5px solid red;
+  border-bottom: none;
+  border-right: none;
+  padding: 0 2rem;
+  width: 38%;
+  height: 30rem;
+  border-radius: 3rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  &::-webkit-scrollbar-track {
+    height: 20rem !important;
+    display: none;
+  }
+
+  ${customMedia.lessThan("tablet")`
+     width: 60%;
+     height: 35rem;
+     grid-template-columns: 1fr ;
+    `};
+`;
+
+const MovieTab = styled.img`
+  height: 11rem;
+  width: 9rem;
+  margin: 2rem 0rem;
+  padding: 0.5rem;
+  object-fit: contain;
+  border: 2px solid rgb(129, 2, 2);
+  border-radius: 20px;
+  border-top: none;
+  border-left: none;
+`;
+
+// const MovieTabContainer = styled.div`
+//   background-color: red;
+//   margin: 2rem 0rem;
+//   height: 11.3rem;
+//   width: 7.8rem;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;

@@ -40,7 +40,7 @@ function Footer() {
       <div
         style={{
           position: "absolute",
-          zIndex: "1000",
+          zIndex: "7",
           bottom: 0,
           color: "#999",
           background: "rgb(27, 27, 27)",
