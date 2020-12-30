@@ -1,13 +1,13 @@
-## Available Scripts
+### Enjoy the app here...
 
-In the project directory, you can run:
-### `npm install`
-### `npm start`
+https://netflixclone22.herokuapp.com
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A clone of netflix account with:
+### Authentication
+### Authorization
+### Individual accounts
+### Seperate saved lists.
+### Every Netflix movie suggestions
+### Every Netflix moive/series Trailers
 
-### `Or Enjoy the app here...`
-
-https://netflixclone22.herokuapp.com/
 
