@@ -10,7 +10,7 @@ function Home() {
   const { currentUser } = useAuth();
 
   return (
-    <div>
+    <div style={{ background: "black" }}>
       <SideBar />
       <Nav />
       <Banner />

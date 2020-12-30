@@ -162,6 +162,7 @@ function MyList() {
           </div>
           <input
             className="inputName"
+            placeholder="Type name > update."
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -337,7 +338,7 @@ const MyListRightContainer = styled.div`
 
   ${customMedia.lessThan("tablet")`
      width: 60%;
-     height: 35rem;
+     height: auto;
      grid-template-columns: 1fr ;
     `};
 `;
