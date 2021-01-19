@@ -8,6 +8,6 @@ A clone of netflix account with:
 ### Individual accounts
 ### Seperate saved lists.
 ### Every Netflix movie suggestions
-### Every Netflix moive/series Trailers
+### Every Netflix movie/series Trailers
 
 
