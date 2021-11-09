@@ -1,5 +1,5 @@
 ### Enjoy the app here...
-soon
+https://netflixtushar.herokuapp.com/
 
 A clone of netflix account with:
 ### Authentication
